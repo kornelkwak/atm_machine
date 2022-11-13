@@ -10,13 +10,13 @@ export const ScreenButton = styled.button`
   height: 55px;
   width: 150px;
   cursor: pointer;
-  border: 3px solid #2E3F7F;
+  border: 3px solid ${({ theme }) => theme.colors.darkBlue};
   border-radius: 5px;
   background: none;
   
   :hover {
-    background: #2E3F7F;
-    color: white;
+    background: ${({ theme }) => theme.colors.darkBlue};
+    color: ${({ theme }) => theme.colors.white};
   }
   
   @media (max-width: 600px) {

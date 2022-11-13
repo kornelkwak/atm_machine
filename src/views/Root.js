@@ -5,6 +5,8 @@ import { GlobalStyle } from "../assets/GlobalStyle";
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AppContainer, Title } from "./Root.style";
 import { BsFillCreditCard2BackFill } from "react-icons/bs";
+import { ThemeProvider } from 'styled-components';
+import { theme } from "../assets/theme";
 
 
 const initialAccountBalance = 10000;
@@ -21,6 +23,15 @@ const Root = () => {
     const clearInputs = () => {
         setDepositInputValue('');
         setWithdrawInputValue('');
+    }
+
+    //cancel last sign in input
+    const handleBack = () => {
+        if (window.location.pathname === '/deposit') {
+            setDepositInputValue(depositInputValue.slice(0, -1));
+        } else if (window.location.pathname === '/withdraw') {
+            setWithdrawInputValue(withdrawInputValue.slice(0, -1))
+        }
     }
 
     const handleInput = (e) => {
@@ -59,23 +70,26 @@ const Root = () => {
 
     return (
         <Router>
-            <GlobalStyle />
-            <BalanceContext.Provider value={ balance }>
-                <AppContainer>
-                    <Title><BsFillCreditCard2BackFill />ATM MACHINE</Title>
-                    <Display
-                        depositInputValue={ depositInputValue }
-                        withdrawInputValue={ withdrawInputValue }
-                        handleInput={ handleInput }
-                    />
-                    <Keyboard
-                        handleConfirm={ handleConfirm }
-                        handleClear={ handleClear }
-                        handleBtnClick={ handleBtnClick }
-                    />
-                </AppContainer>
+            <ThemeProvider theme={ theme }>
+                <GlobalStyle />
+                <BalanceContext.Provider value={ balance }>
+                    <AppContainer>
+                        <Title><BsFillCreditCard2BackFill />ATM MACHINE</Title>
+                        <Display
+                            depositInputValue={ depositInputValue }
+                            withdrawInputValue={ withdrawInputValue }
+                            handleInput={ handleInput }
+                        />
+                        <Keyboard
+                            handleConfirm={ handleConfirm }
+                            handleClear={ handleClear }
+                            handleBtnClick={ handleBtnClick }
+                            handleBack={ handleBack }
+                        />
+                    </AppContainer>
 
-            </BalanceContext.Provider>
+                </BalanceContext.Provider>
+            </ThemeProvider>
         </Router>
     );
 }

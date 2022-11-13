@@ -9,12 +9,12 @@ export const Button = styled.button`
   cursor: pointer;
   
   border-radius: 5px;
-  background-color: #EEF0ED;
+  background-color: ${({ theme }) => theme.colors.lightGrey};
   webkit-box-shadow: -4px 8px 33px -6px rgba(5,5,5,0.42);
   -moz-box-shadow: -4px 8px 33px -6px rgba(5,5,5,0.42);
   box-shadow: -4px 8px 33px -6px rgba(5,5,5,0.42);
   :hover {
-    background-color: #D4DADE;
+    background-color: ${({ theme }) => theme.colors.darkGrey};
   }
 
   @media (max-width: 600px) {
