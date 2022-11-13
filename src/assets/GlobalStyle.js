@@ -13,7 +13,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Montserrat', sans-serif;
     fint-size: 14px;
-    background-color: #2E3F7F;
+    background-color: ${({ theme }) => theme.colors.darkBlue};
+    color:  ${({ theme }) => theme.colors.black};
 
   }
   

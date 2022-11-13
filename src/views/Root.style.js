@@ -20,6 +20,6 @@ export const Title = styled.h1`
   justify: content: center;
   align-items: center;
   gap: 5px; 
-  color: red;
+  color: ${({ theme }) => theme.colors.red};
   font-style: italic;
 `;

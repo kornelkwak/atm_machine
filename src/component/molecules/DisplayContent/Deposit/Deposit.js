@@ -4,7 +4,7 @@ const Deposit = ({ depositInputValue, handleInput }) => {
 
     return (
         <>
-            <label htmlFor="deposit">Deposit: </label>
+            <label htmlFor="deposit">Deposit money: </label>
             <StyledInput name="deposit" type="text" value={ depositInputValue } onChange={ handleInput } />
         </>
     )
