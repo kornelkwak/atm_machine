@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import Display from "../component/organisms/Display/Display";
 import Keyboard from "../component/organisms/Keyboard/Keyboard";
+import { GlobalStyle } from "../assets/GlobalStyle";
 import { BrowserRouter as Router } from 'react-router-dom';
+import { AppContainer, Title } from "./Root.style";
+import { BsFillCreditCard2BackFill } from "react-icons/bs";
+
 
 const initialAccountBalance = 10000;
 
@@ -28,7 +32,7 @@ const Root = () => {
     }
 
     const handleConfirm = () => {
-        console.log(window.location.pathname)
+
         if (window.location.pathname === '/deposit') {
             //check if depositInputValue is valid number
             (!Number.isNaN(Number(depositInputValue))) ? setBalance(Number(balance) + Number(depositInputValue)) : alert('Your value is not a number!');
@@ -54,9 +58,11 @@ const Root = () => {
     }
 
     return (
-        <div className="Root">
-            <Router>
-                <BalanceContext.Provider value={ balance }>
+        <Router>
+            <GlobalStyle />
+            <BalanceContext.Provider value={ balance }>
+                <AppContainer>
+                    <Title><BsFillCreditCard2BackFill />ATM MACHINE</Title>
                     <Display
                         depositInputValue={ depositInputValue }
                         withdrawInputValue={ withdrawInputValue }
@@ -67,9 +73,10 @@ const Root = () => {
                         handleClear={ handleClear }
                         handleBtnClick={ handleBtnClick }
                     />
-                </BalanceContext.Provider>
-            </Router>
-        </div>
+                </AppContainer>
+
+            </BalanceContext.Provider>
+        </Router>
     );
 }
 export default Root;

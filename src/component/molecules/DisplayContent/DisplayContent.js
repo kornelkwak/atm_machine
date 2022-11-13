@@ -3,7 +3,7 @@ import { Wrapper } from "./DisplayContent.style";
 import Balance from "./Balance/Balance";
 import Deposit from "./Deposit/Deposit";
 import Withdraw from "./Withdraw/Withdraw";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 const DisplayContent = ({ depositInputValue, withdrawInputValue, handleInput }) => {
 
@@ -11,7 +11,7 @@ const DisplayContent = ({ depositInputValue, withdrawInputValue, handleInput }) 
         <Wrapper>
             <Routes>
                 <Route exact path="/" element={
-                    <h2>Choose your action</h2>
+                    <h3>Choose your action</h3>
                 } />
                 <Route exact path="/balance" element={
                     <Balance></Balance>

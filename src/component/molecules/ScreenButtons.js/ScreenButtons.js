@@ -8,17 +8,15 @@ const ScreenButtons = () => {
     return (
 
         <Wrapper>
-
-            <Link to="/balance">
-                <ScreenButton>Balance</ScreenButton>
+            <Link to="/balance" style={ { textDecoration: 'none' } }>
+                <ScreenButton>BALANCE</ScreenButton>
             </Link>
-            <Link to="/deposit">
-                <ScreenButton>Deposit</ScreenButton>
+            <Link to="/deposit" style={ { textDecoration: 'none' } }>
+                <ScreenButton>DEPOSIT</ScreenButton>
             </Link>
-            <Link to="/withdraw">
-                <ScreenButton>Withdraw</ScreenButton>
+            <Link to="/withdraw" style={ { textDecoration: 'none' } }>
+                <ScreenButton>WITHDRAW</ScreenButton>
             </Link>
-
         </Wrapper>
     )
 }
