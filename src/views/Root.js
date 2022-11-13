@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import Display from "../component/organisms/Display/Display";
 import Keyboard from "../component/organisms/Keyboard/Keyboard";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const initialAccountBalance = 10000;
 
 export const BalanceContext = React.createContext();
 
 const Root = () => {
+
     const [balance, setBalance] = useState(initialAccountBalance);
     const [depositInputValue, setDepositInputValue] = useState('');
     const [withdrawInputValue, setWithdrawInputValue] = useState('');
 
-    console.log(depositInputValue);
+    //function clears inputs
+    const clearInputs = () => {
+        setDepositInputValue('');
+        setWithdrawInputValue('');
+    }
 
     const handleInput = (e) => {
-        console.log(e.target)
         if (e.target.name === 'deposit') {
             setDepositInputValue(e.target.value);
         } else if (e.target.name === 'withdraw') {
@@ -24,24 +28,29 @@ const Root = () => {
     }
 
     const handleConfirm = () => {
-        if (depositInputValue > 0) {
-            setBalance(Number(balance) + Number(depositInputValue));
-            setDepositInputValue('');
-        } else if (withdrawInputValue > 0) {
-            Number(withdrawInputValue) <= Number(balance) ? setBalance(Number(balance) - Number(withdrawInputValue)) : alert('Brak wystarczających środków na koncie');
-            setWithdrawInputValue('');
+        console.log(window.location.pathname)
+        if (window.location.pathname === '/deposit') {
+            //check if depositInputValue is valid number
+            (!Number.isNaN(Number(depositInputValue))) ? setBalance(Number(balance) + Number(depositInputValue)) : alert('Your value is not a number!');
+            clearInputs();
+        } else if (window.location.pathname === '/withdraw') {
+            //check if withdrawInputValue is valid number
+            if (!Number.isNaN(Number(withdrawInputValue))) {
+                Number(withdrawInputValue) <= Number(balance) ? setBalance(Number(balance) - Number(withdrawInputValue)) : alert('There are not enough funds in the account');
+            }
+            clearInputs();
+        } else {
+            clearInputs();
         }
     }
 
     const handleClear = () => {
-        setDepositInputValue('');
-        setWithdrawInputValue('');
+        clearInputs();
     }
 
     const handleBtnClick = (e) => {
         setDepositInputValue(depositInputValue + e.target.value);
         setWithdrawInputValue(withdrawInputValue + e.target.value);
-        console.log('btn clicked: ' + e.target.value)
     }
 
     return (
